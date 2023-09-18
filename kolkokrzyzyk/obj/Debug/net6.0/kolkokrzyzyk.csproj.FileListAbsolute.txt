@@ -1,0 +1,14 @@
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\kolkokrzyzyk.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\kolkokrzyzyk.AssemblyInfoInputs.cache
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\kolkokrzyzyk.AssemblyInfo.cs
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\kolkokrzyzyk.csproj.CoreCompileInputs.cache
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\bin\Debug\net6.0\kolkokrzyzyk.exe
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\bin\Debug\net6.0\kolkokrzyzyk.deps.json
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\bin\Debug\net6.0\kolkokrzyzyk.runtimeconfig.json
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\bin\Debug\net6.0\kolkokrzyzyk.dll
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\bin\Debug\net6.0\kolkokrzyzyk.pdb
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\kolkokrzyzyk.dll
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\refint\kolkokrzyzyk.dll
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\kolkokrzyzyk.pdb
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\kolkokrzyzyk.genruntimeconfig.cache
+C:\Users\MasterUwU\source\repos\kolkokrzyzyk\kolkokrzyzyk\obj\Debug\net6.0\ref\kolkokrzyzyk.dll
