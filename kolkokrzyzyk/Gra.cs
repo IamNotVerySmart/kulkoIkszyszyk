@@ -5,7 +5,6 @@
         string[] val = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }; //pozycje na planszy
         int positionChoice;
         bool playerTurn = false;
-        int check = 0;
         int drawValue = 0;
         public int gameStatus = 1; // 0 = przegrana | 1 = w trakcie | 2 = wygrana | 3 = remis
         //rozpoczecie gry oraz sprawdzanie czyja kolej.
@@ -13,16 +12,16 @@
         {
             if (playerTurn)
             {
-                //choseWinner();
                 pickPosition();
-                //generateBoard();
+                generateBoard();
+                choseWinner("O");
                 Console.WriteLine("<><><><><><><><><><><><><>");
             }
             else
             {
-                //choseWinner();
                 pickAiPosition();
-                // generateBoard();
+                generateBoard();
+                choseWinner("X");
                 Console.WriteLine("<><><><><><><><><><><><><>");
             }
 
@@ -30,35 +29,28 @@
         //wybor pola na planszy przez gracza
         public void pickPosition()
         {
+            string tmp = "";
             Console.WriteLine("Pick position for 'O': ");
-            string tmp = Console.ReadLine()!;
-            if (tmp == "")
-            {
-                Console.WriteLine("No position selected, please chose one.");
-                pickPosition();
-            }
-            else
+            tmp = Console.ReadLine()!;
+            if (int.TryParse(tmp, out int position) && position >= 1 && position <= 10)
             {
                 positionChoice = int.Parse(tmp);
-                if (positionChoice == 0 || positionChoice >= val.Length)
+                if (val[positionChoice] == "O" || val[positionChoice] == "X")
                 {
-                    Console.WriteLine("Unvailid position, please chose diffrent one.");
-                    positionChoice = int.Parse(Console.ReadLine()!);
+                    Console.WriteLine("Position already taken, pick another one.");
+                    pickPosition();
                 }
                 else
                 {
-                    if (val[positionChoice] == "O" || val[positionChoice] == "X")
-                    {
-                        Console.WriteLine("Position already taken, pick another one.");
-                        pickPosition();
-                    }
-                    else
-                    {
-                        val[positionChoice] = "O";
-                        playerTurn = false;
-                        positionChoice = 0;
-                    }
+                    val[positionChoice] = "O";
+                    playerTurn = false;
+                    positionChoice = 0;
                 }
+            }
+            else
+            {
+                Console.WriteLine("Unvailid position, please chose diffrent one.");
+                pickPosition();
             }
         }
         //wybor pola na planszy przez komputer
@@ -79,230 +71,30 @@
             }
         }
         //sprawdzanie kto wygral lub remisu
-        public void choseWinner()
+        public void choseWinner(string playerOrAi)
         {
-            #region didPlayerWin?
-            for (int i = 1; i < 3; i++)
+            if ((val[1] == playerOrAi && val[2] == playerOrAi && val[3] == playerOrAi) ||
+                (val[4] == playerOrAi && val[5] == playerOrAi && val[6] == playerOrAi) ||
+                (val[7] == playerOrAi && val[8] == playerOrAi && val[9] == playerOrAi) ||
+                (val[1] == playerOrAi && val[4] == playerOrAi && val[7] == playerOrAi) ||
+                (val[2] == playerOrAi && val[5] == playerOrAi && val[8] == playerOrAi) ||
+                (val[3] == playerOrAi && val[6] == playerOrAi && val[9] == playerOrAi) ||
+                (val[1] == playerOrAi && val[5] == playerOrAi && val[9] == playerOrAi) ||
+                (val[3] == playerOrAi && val[5] == playerOrAi && val[7] == playerOrAi))
             {
-                if (val[i] == "O")
+                if (playerOrAi == "O")
                 {
-                    check++;
-                    if (check == 3)
-                    {
-                        gameStatus = 2;
-                    }
+                    gameStatus = 2;
                 }
                 else
                 {
-                    check = 0;
-                    break;
+                    gameStatus = 0;
                 }
             }
-            for(int i = 4; i < 6; i++)
+            //sprawdzanie czy plansza jest pełna bez zwycięscy(remis)
+            foreach (string n in val)
             {
-                if (val[i] == "O")
-                {
-                    check++;
-                    if (check == 3)
-                    {
-                        gameStatus = 2;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for(int i = 7; i < 9; i++)
-            {
-                if (val[i] == "O")
-                {
-                    check++;
-                    if (check == 3)
-                    {
-                        gameStatus = 2;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 1; i < 7;)
-            {
-                if (val[i] == "O")
-                {
-                    check++;
-                    i += 3;
-                    if (check == 3)
-                    {
-                        gameStatus = 2;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 2; i < 8;)
-            {
-                if (val[i] == "O")
-                {
-                    check++;
-                    i += 3;
-                    if (check == 3)
-                    {
-                        gameStatus = 2;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 3; i < 9;)
-            {
-                if (val[i] == "O")
-                {
-                    check++;
-                    i += 3;
-                    if (check == 3)
-                    {
-                        gameStatus = 2;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            if (val[1] == "O" && val[5] == "O" && val[9] == "O")
-            {
-                gameStatus = 2;
-            }
-            if (val[3] == "O" && val[5] == "O" && val[7] == "O")
-            {
-                gameStatus = 2;
-            }
-            #endregion
-            #region didComputerWin?
-            for (int i = 1; i < 3; i++)
-            {
-                if (val[i] == "X")
-                {
-                    check++;
-                    if (check == 3)
-                    {
-                        gameStatus = 0;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 4; i < 6; i++)
-            {
-                if (val[i] == "X")
-                {
-                    check++;
-                    if (check == 3)
-                    {
-                        gameStatus = 0;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 7; i < 9; i++)
-            {
-                if (val[i] == "X")
-                {
-                    check++;
-                    if (check == 3)
-                    {
-                        gameStatus = 0;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 1; i < 7;)
-            {
-                if (val[i] == "X")
-                {
-                    check++;
-                    i += 3;
-                    if (check == 3)
-                    {
-                        gameStatus = 0;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 2; i < 8;)
-            {
-                if (val[i] == "X")
-                {
-                    check++;
-                    i += 3;
-                    if (check == 3)
-                    {
-                        gameStatus = 0;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            for (int i = 3; i < 9;)
-            {
-                if (val[i] == "X")
-                {
-                    check++;
-                    i += 3;
-                    if (check == 3)
-                    {
-                        gameStatus = 0;
-                    }
-                }
-                else
-                {
-                    check = 0;
-                    break;
-                }
-            }
-            if (val[1] == "X" && val[5] == "X" && val[9] == "X")
-            {
-                gameStatus = 0;
-            }
-            if (val[3] == "X" && val[5] == "X" && val[7] == "X")
-            {
-                gameStatus = 0;
-            }
-            #endregion
-            //sprawdzanie czy plansza jest pełna bez zwycięscy
-            foreach(string n in val)
-            {
-                if (n == "O"  || n == "X")
+                if (n == "O" || n == "X")
                 {
                     drawValue++;
                     if (drawValue == 9)
@@ -313,6 +105,7 @@
                 else
                 {
                     drawValue = 0;
+                    break;
                 }
             }
         }

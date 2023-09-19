@@ -9,13 +9,14 @@ Gra gra = new Gra();
 //gra.generateBoard();
 while(gra.gameStatus == 1)
 {
-    gra.generateBoard();
-    gra.choseWinner();
+    //gra.generateBoard();
+    //gra.choseWinner();
     gra.moveOnBoard();
 }
 if(gra.gameStatus == 0)
 {
     Console.WriteLine("gameStatus = 0");
+    Console.WriteLine("Przegrałeś! smutno :(");
 }
 if(gra.gameStatus == 2)
 {
